@@ -30,5 +30,14 @@ router.route('/todos')
     });
   });
 
-module.exports = router;
+router.route('/todos/:todo_id')
 
+  .get(function(req, res) {
+    ToDo.findById(req.params.todo_id, function(err, todo) {
+      if (err)
+        res.send(err);
+      res.json(todo);
+    });
+  });
+
+module.exports = router;
