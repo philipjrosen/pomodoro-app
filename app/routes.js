@@ -6,7 +6,7 @@ router.get('/', function(req, res) {
   res.json({ message: 'basic api working' }); 
 });
 
-router.route('/todo')
+router.route('/todos')
 
   .post(function(req, res){
     var todo = new ToDo();
@@ -19,6 +19,14 @@ router.route('/todo')
 
       res.json({message: "ToDo Created"});
 
+    });
+  })
+  .get(function(req, res) {
+    ToDo.find(function(err, todos) {
+      if (err)
+        res.send(err);
+
+      res.json(todos);
     });
   });
 
