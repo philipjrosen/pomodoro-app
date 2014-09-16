@@ -38,6 +38,23 @@ router.route('/todos/:todo_id')
         res.send(err);
       res.json(todo);
     });
+  })
+  .put(function(req, res) {
+
+    ToDo.findById(req.params.todo_id, function(err, todo) {
+
+      if (err)
+        res.send(err);
+
+      todo.name = req.body.name;
+
+      todo.save(function(err) {
+        if (err)
+          res.send(err);
+
+        res.json({ message: 'ToDo updated!' });
+      });
+    });
   });
 
 module.exports = router;
