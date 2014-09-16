@@ -1,0 +1,10 @@
+{
+	"name": "pomodoro-api",
+	"main": "server.js",
+	"dependencies": {
+	  "express": "4.9.x",
+          "mongoose": "3.8.x",
+	  "body-parser": "~1.8.x"
+	}
+}
+
