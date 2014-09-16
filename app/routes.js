@@ -2,10 +2,6 @@ var express = require('express');
 var router = express.Router();
 var ToDo = require('./models/todo');
 
-router.get('/', function(req, res) {
-  res.json({ message: 'basic api working' }); 
-});
-
 router.route('/todos')
 
   .post(function(req, res){
