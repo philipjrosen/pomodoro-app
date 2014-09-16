@@ -55,6 +55,16 @@ router.route('/todos/:todo_id')
         res.json({ message: 'ToDo updated!' });
       });
     });
+  })
+  .delete(function(req, res) {
+    ToDo.remove({
+      _id: req.params.todo_id
+    }, function(err, todo) {
+      if (err)
+        res.send(err);
+
+      res.json({ message: 'Successfully deleted' });
+    });
   });
 
 module.exports = router;
