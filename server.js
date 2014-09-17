@@ -3,7 +3,7 @@ var app = express();
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 
-var ToDo = require('./app/models/todo');
+var Activity = require('./app/models/activity');
 
 
 var db = require('./config/db');
@@ -30,60 +30,60 @@ router.use(express.static(__dirname + '/public'));
 //handle http requests from front end
 app.use('/', router);
 
-app.route('/todos')
+app.route('/activities')
 
   .post(function(req, res){
-    var todo = new ToDo();
-    todo.name = req.body.name;
+    var activity = new Activity();
+    activity.name = req.body.name;
 
-    todo.save(function(err) {
+    activity.save(function(err) {
       if(err){
         res.send(err);
       }
 
-      res.json({message: "ToDo Created"});
+      res.json({message: "Activity Created"});
 
     });
   })
   .get(function(req, res) {
-    ToDo.find(function(err, todos) {
+    Activity.find(function(err, activities) {
       if (err)
         res.send(err);
 
-      res.json(todos);
+      res.json(activities);
     });
   });
 
-app.route('/todos/:todo_id')
+app.route('/activities/:activity_id')
 
   .get(function(req, res) {
-    ToDo.findById(req.params.todo_id, function(err, todo) {
+    Activity.findById(req.params.activity_id, function(err, activity) {
       if (err)
         res.send(err);
-      res.json(todo);
+      res.json(activity);
     });
   })
   .put(function(req, res) {
 
-    ToDo.findById(req.params.todo_id, function(err, todo) {
+    Activity.findById(req.params.activity_id, function(err, activity) {
 
       if (err)
         res.send(err);
 
-      todo.name = req.body.name;
+      activity.name = req.body.name;
 
-      todo.save(function(err) {
+      activity.save(function(err) {
         if (err)
           res.send(err);
 
-        res.json({ message: 'ToDo updated!' });
+        res.json({ message: 'Activity updated!' });
       });
     });
   })
   .delete(function(req, res) {
-    ToDo.remove({
-      _id: req.params.todo_id
-    }, function(err, todo) {
+    Activity.remove({
+      _id: req.params.activity_id
+    }, function(err, activity) {
       if (err)
         res.send(err);
 
@@ -93,3 +93,5 @@ app.route('/todos/:todo_id')
 
 app.listen(port);
 console.log('Listening on port ' + port + '...');
+
+exports = module.exports = app;
