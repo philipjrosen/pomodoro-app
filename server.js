@@ -35,6 +35,12 @@ app.route('/activities')
   .post(function(req, res){
     var activity = new Activity();
     activity.name = req.body.name;
+    activity.completed = req.body.completed;
+    activity.todo_today = req.body.todo_today;
+    activity.pomos_init_est = req.body.pomos_init_est;
+    activity.pomos_curr_est = req.body.pomos_curr_est;
+    activity.pomos_required = req.body.pomos_required;
+    activity.due_date = req.body.due_date;
 
     activity.save(function(err) {
       if(err){
