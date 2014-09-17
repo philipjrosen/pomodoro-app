@@ -22,12 +22,15 @@ app.use(bodyParser.json());
 app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(express.static(__dirname + '/public'));
-
-//Handle the routes for http requests from angular
 var router = express.Router();
 
-router.route('/todos')
+//serve static files
+router.use(express.static(__dirname + '/public'));
+
+//handle http requests from front end
+app.use('/', router);
+
+app.route('/todos')
 
   .post(function(req, res){
     var todo = new ToDo();
@@ -51,7 +54,7 @@ router.route('/todos')
     });
   });
 
-router.route('/todos/:todo_id')
+app.route('/todos/:todo_id')
 
   .get(function(req, res) {
     ToDo.findById(req.params.todo_id, function(err, todo) {
@@ -87,8 +90,6 @@ router.route('/todos/:todo_id')
       res.json({ message: 'Successfully deleted' });
     });
   });
-
-app.use('/', router);
 
 app.listen(port);
 console.log('Listening on port ' + port + '...');
