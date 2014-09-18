@@ -4,12 +4,21 @@ angular.module('pomodoroApp')
   function($scope, activitiesFactory) {
     $scope.activities = [];
 
-    activitiesFactory.getActivities()
+    $scope.init = function() {
+      activitiesFactory.getActivities()
+
       .success(function(activities) {
         $scope.activities = activities;
+
         //log date from server to browser console
         logger(activities);
+
       });
+    };
+
+    //load activities when app starts
+    $scope.init();
+
 }]);
 
 function logger(arr) {
