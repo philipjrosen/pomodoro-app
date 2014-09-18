@@ -28,4 +28,14 @@ angular.module('pomodoroApp')
         console.log('Unable to insert activity: ' + error.message);
       });
     };
+
+    $scope.removeActivity = function(activity) {
+      activitiesFactory.delete(activity)
+      .success(function (data) {
+        console.log("success:", data);
+      })
+      .error(function(error) {
+        console.log('Unable to delete activity: ' + error.message);
+      });
+    };
 }]);

@@ -85,13 +85,14 @@ app.route('/activities/:activity_id')
   })
 
   .delete(function(req, res) {
+    console.log("req.params:", req.params);
     Activity.remove({
       _id: req.params.activity_id
     }, function(err, activity) {
       if (err)
         res.send(err);
 
-      res.json({ message: 'Successfully deleted' });
+      res.json({ message: 'Successfully deleted activity with  ' + req.params.activity_id });
     });
   });
 
