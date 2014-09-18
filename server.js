@@ -5,7 +5,6 @@ var bodyParser = require('body-parser');
 
 var Activity = require('./app/models/activity');
 
-
 var db = require('./config/db');
 
 var port = process.env.PORT || 8080;
