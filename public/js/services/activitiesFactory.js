@@ -7,5 +7,9 @@ angular.module('pomodoroApp')
       return $http.get('/activities');
     };
 
+    factory.post = function(activity) {
+      return $http.post('/activities', activity);
+    };
+
     return factory;
   }]);

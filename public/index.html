@@ -11,6 +11,9 @@
   <h2>Pomodoro App</h2>
 
   <div ng-controller="ActivitiesController">
+    <input type="text" ng-model="activity.name">
+    <input type="button" value="Add" ng-click="addActivity(activity.name)">
+
     <div ng-repeat="activity in activities">
       {{activity.name}}
     </div>
