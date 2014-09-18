@@ -11,5 +11,9 @@ angular.module('pomodoroApp')
       return $http.post('/activities', activity);
     };
 
+    factory.delete = function(activity) {
+      return $http.delete('/activities/' + activity._id);
+    };
+
     return factory;
   }]);
