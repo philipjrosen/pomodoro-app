@@ -5,6 +5,17 @@
   <title>Pomodoro App</title>
 
   <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.min.css">
+  <style>
+    .item {
+      width: 200px;
+      margin: 10px;
+      padding: 5px;
+      border: 1px solid black;
+    }
+    .remove {
+      float: right;
+    }
+  </style>
 
 </head>
 <body>
@@ -13,8 +24,9 @@
   <div ng-controller="ActivitiesController">
     <input type="text" ng-model="activity.name" ng-enter="addActivity(activity.name)">
 
-    <div ng-repeat="activity in activities | reverse">
+    <div class="item" ng-repeat="activity in activities | reverse">
       {{activity.name}}
+      <span class="remove" ng-click="removeActivity(activity.name)">X</span>
     </div>
 
   </div>
