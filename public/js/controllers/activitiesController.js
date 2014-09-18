@@ -29,9 +29,3 @@ angular.module('pomodoroApp')
       });
     };
 }]);
-
-function logger(arr) {
-  arr.forEach(function(item) {
-    console.log(item.name);
-  });
-}
