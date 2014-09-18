@@ -37,14 +37,16 @@ app.route('/activities')
     });
 
     activity.save(function(err) {
-      if(err){
-        res.send(err);
-      }
+      if(err) res.send(err);
 
-      res.json({message: "Activity Created"});
+      Activity.findById(activity, function (err, activity) {
+        if (err) return handleError(err);
+        res.json(activity);
+      });
 
     });
   })
+
   .get(function(req, res) {
     Activity.find(function(err, activities) {
       if (err)
@@ -63,6 +65,7 @@ app.route('/activities/:activity_id')
       res.json(activity);
     });
   })
+
   .put(function(req, res) {
 
     Activity.findById(req.params.activity_id, function(err, activity) {
@@ -80,6 +83,7 @@ app.route('/activities/:activity_id')
       });
     });
   })
+
   .delete(function(req, res) {
     Activity.remove({
       _id: req.params.activity_id
