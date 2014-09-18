@@ -32,7 +32,11 @@ angular.module('pomodoroApp')
     $scope.removeActivity = function(activity) {
       activitiesFactory.delete(activity)
       .success(function (data) {
-        console.log("success:", data);
+        $scope.activities.forEach(function (item, i, arr) {
+          if (item._id === data.activityId) {
+            arr.splice(i,1);
+          }
+        });
       })
       .error(function(error) {
         console.log('Unable to delete activity: ' + error.message);
