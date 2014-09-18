@@ -7,8 +7,13 @@ angular.module('pomodoroApp')
     activitiesFactory.getActivities()
       .success(function(activities) {
         $scope.activities = activities;
-        activities.forEach(function(activity) {
-          console.log(activity.name);
-        });
+        //log date from server to browser console
+        logger(activities);
       });
 }]);
+
+function logger(arr) {
+  arr.forEach(function(item) {
+    console.log(item.name);
+  });
+}
