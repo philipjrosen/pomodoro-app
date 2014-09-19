@@ -6,27 +6,39 @@
 
   <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.min.css">
   <style>
-    .item {
-      width: 200px;
-      margin: 10px;
+    #add-activity {
+      margin-bottom: 20px;
+      margin-left: 20px;
       padding: 5px;
-      border: 1px solid black;
     }
-    .remove {
-      float: right;
+    .item {
+      padding: 5px;
+      margin-left: 20px;
+    }
+
+    input {
+      width: 400px;
+    }
+    h1 {
+      margin-left: auto;
+      margin-right: auto;
+      width: 300px;
     }
   </style>
 
 </head>
 <body>
-  <h2>Pomodoro App</h2>
+  <h1>Pomodoro App</h1>
+  <h2>Activities List</h2>
 
   <div ng-controller="ActivitiesController">
-    <input type="text" ng-model="activity.name" ng-enter="addActivity(activity.name)">
+    <input id="add-activity" type="text" placeholder="Add New Activity" ng-model="activity.name" ng-enter="addActivity(activity.name)">
 
-    <div class="item" ng-repeat="activity in activities | reverse">
-      {{activity.name}}
-      <span class="remove" ng-click="removeActivity(activity)">X</span>
+    <div ng-repeat="activity in activities | reverse">
+      <input class="item" type="text" ng-model="activity.name" value="{{activity.name}}">      
+      <span ng-click="removeActivity(activity)">
+        <span class="glyphicon glyphicon-remove"></span>
+      </span>
     </div>
 
   </div>
