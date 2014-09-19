@@ -35,7 +35,7 @@
     <input id="add-activity" type="text" placeholder="Add New Activity" ng-model="activity.name" ng-enter="addActivity(activity.name)">
 
     <div ng-repeat="activity in activities | reverse">
-      <input class="item" type="text" ng-model="activity.name" value="{{activity.name}}">      
+      <input class="item" type="text" ng-model="activity.name" ng-enter="updateActivity(activity)" value="{{activity.name}}">      
       <span ng-click="removeActivity(activity)">
         <span class="glyphicon glyphicon-remove"></span>
       </span>

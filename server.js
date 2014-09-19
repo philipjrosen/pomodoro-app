@@ -79,7 +79,7 @@ app.route('/activities/:activity_id')
         if (err)
           res.send(err);
 
-        res.json({ message: 'Activity updated!' });
+          res.json(activity);
       });
     });
   })

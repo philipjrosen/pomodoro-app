@@ -42,4 +42,14 @@ angular.module('pomodoroApp')
         console.log('Unable to delete activity: ' + error.message);
       });
     };
+
+    $scope.updateActivity = function(activity) {
+      activitiesFactory.put(activity)
+      .success(function (data) {
+        console.log("data:", data);
+      })
+      .error(function(error) {
+        console.log('Unable to delete activity: ' + error.message);
+      });
+    };
 }]);
